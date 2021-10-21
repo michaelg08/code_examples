@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+<!--
+		<add id="UIS::top_level" module="UIS_FlashDeals" resource="Magento_Backend::content" sortOrder="9999" title="Sell more Products" />
+-->
+		<add action="uisflashdeals/flashdeals/index" id="UIS_FlashDeals::uis_flashdeals_flashdeals" module="UIS_FlashDeals" resource="Magento_Backend::content" parent="Lofmp_FeaturedProducts::featured_products" sortOrder="9999" title="Banner" icon="fa fa-picture-o"/>
+		<add action="uisflashdeals/flashdealproducts/index" id="UIS_FlashDeals::uis_flashdeals_flashdealproducts" module="UIS_FlashDeals" resource="Magento_Backend::content" parent="Lofmp_FeaturedProducts::featured_products" sortOrder="9999" title="Flash Deal" icon="fa fa-bolt"/>
+	</menu>
+</config>

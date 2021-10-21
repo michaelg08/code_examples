@@ -1,0 +1,22 @@
+{
+    "name": "uis/module-flashdeals",
+    "description": "Flash Deals by UIS",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mykhailo Husak",
+            "email": "husak.mykhailo@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "UIS\\FlashDeals\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @var $block \UIS\FlashDeals\Block\Flashdeals\FlashdealProductPrice
+ */
+?>
+<?php if ($this->getIsFlashdealProduct()): ?>
+<?php $flashdealProductPrice = $this->getFlashdealProductPrice(); ?>
+<?php if ($flashdealProductPrice): ?>
+<?php $formattedPrice = $this->getFormattedPrice($flashdealProductPrice); ?>
+<script>
+	require([
+		'jquery',
+		"ko",
+		'uiComponent',
+		"domReady!"
+	], function($, ko, Component) {
+		'use strict';
+
+		$(function() {
+			ko.options.useOnlyNativeEvents = true;
+		
+			var productId = '<?php echo $this->getCurrentProduct()->getEntityId(); ?>'
+			$('#product-price-'+productId).html('<?php echo $formattedPrice ?>');
+
+		});
+
+	});
+</script>
+<?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="UIS_FlashDeals::css/flashdeal_membership_styles.css"/>
+    </head>
+    <body>
+	<referenceContainer name="product.page.related.products" remove="true" />
+	<referenceContainer name="procuct.store.service" remove="true" />
+    <referenceContainer name="product.banner" remove="true" />
+    <referenceBlock name="product.info.options.wrapper">
+        <action method="setTemplate">
+            <argument name="template" xsi:type="string">UIS_FlashDeals::product/view/options/wrapper.phtml</argument>
+        </action>
+    </referenceBlock>
+    <referenceBlock name="product.info.options.date">
+        <action method="setTemplate">
+            <argument name="template" xsi:type="string">UIS_FlashDeals::product/view/options/type/date.phtml</argument>
+        </action>
+    </referenceBlock>
+
+    
+<!--
+        <referenceBlock name="product.info.main">
+        </referenceBlock>
+-->
+    </body>
+</page>

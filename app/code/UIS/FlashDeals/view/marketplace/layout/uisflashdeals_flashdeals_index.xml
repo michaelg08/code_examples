@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="content">
+			<uiComponent name="uis_flashdeals_flashdeals_listing"/>
+		</referenceContainer> 
+
+<!-- Old layout 
+		<referenceBlock name="content">
+			<block as="flashdeals_form" class="UIS\FlashDeals\Block\Flashdeals\Form" name="flashdeals.form" template="UIS_FlashDeals::flashdeals/form.phtml"/>
+		</referenceBlock>
+		<referenceContainer name="content">
+			<block class="UIS\FlashDeals\Block\Index\Index" name="index.index" template="UIS_FlashDeals::index/index.phtml"/>
+		</referenceContainer>
+-->
+	</body>
+</page>

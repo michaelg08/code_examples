@@ -1,0 +1,163 @@
+<?php
+/**
+ * @category   UIS
+ * @package    UIS_FlashDeals
+ * @copyright  Copyright (c) 2020 UIS
+ * @license    
+ */
+
+namespace UIS\FlashDeals\Setup\Patch\Data;
+
+use Magento\Catalog\Model\Product;
+use Magento\Eav\Setup\EavSetupFactory;
+use Magento\Eav\Setup\EavSetup;
+use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Framework\Setup\Patch\PatchRevertableInterface;
+use Magento\Framework\Setup\ModuleDataSetupInterface;
+use UIS\FlashDeals\Model\Product\Type\FlashdealMembership;
+use \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
+
+//use Magento\Framework\Setup\InstallDataInterface;
+//use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
+
+
+/**
+ * @codeCoverageIgnore
+ */
+class addSubscriptionData implements DataPatchInterface, PatchRevertableInterface
+{
+    /**
+     * Customer collection factory
+     *
+     * @var \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory
+     */
+    private $_customerCollectionFactory;
+    
+    /**
+     * @var \Magento\Catalog\Setup\CategorySetupFactory
+     */
+    private $_categorySetupFactory;
+
+    /**
+     * @var ModuleDataSetupInterface
+     */
+    private $moduleDataSetup;
+    /**
+     * @var EavSetupFactory
+     */
+    private $eavSetupFactory;
+    
+    /**
+     * Init
+     *
+     * @param CategorySetupFactory $categorySetupFactory
+     */
+    public function __construct(
+        CollectionFactory $customerCollectionFactory,
+        ModuleDataSetupInterface $moduleDataSetup,
+        EavSetupFactory $eavSetupFactory
+    ) {
+        $this->_customerCollectionFactory = $customerCollectionFactory;
+        $this->moduleDataSetup = $moduleDataSetup;
+        $this->eavSetupFactory = $eavSetupFactory;
+    }
+    
+    /**
+     * {@inheritdoc}
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     */
+    public function apply(
+    ) {
+        
+        $this->moduleDataSetup->getConnection()->startSetup();
+        /** @var EavSetup $eavSetup */
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
+        
+        $eavSetup->addAttribute(
+            Product::ENTITY,
+            'flashdeal_duration',
+            [
+                'group' => 'Product Details',
+                'type' => 'text',
+                'input' => 'text',
+                'position' => 4,
+                'visible' => true,
+                'default' => '',
+                'visible' => true,
+                'required' => true,
+                'user_defined' => false,
+                'default' => '',
+                'backend' => 'UIS\FlashDeals\Model\Product\Attribute\Backend\FlashdealMembershipDropdown',
+                'visible_on_front' => false,
+                'unique' => false,
+                'is_configurable' => false,
+                'used_for_promo_rules' => false,
+                'is_used_in_grid' => false,
+                'is_visible_in_grid' => false,
+                'is_filterable_in_grid' => false,
+                'used_in_product_listing' => true,
+                'apply_to'=> 'seller_membership',
+            ]
+        );
+
+          /*make sure these attributes are applied for membership product type only*/
+        $attributes = [
+            'flashdeal_duration',
+        ];
+        foreach ($attributes as $attributeCode) {
+            $attribute = $eavSetup->getAttribute(Product::ENTITY, $attributeCode);
+            $eavSetup->updateAttribute(Product::ENTITY, $attributeCode, 'apply_to', FlashdealMembership::TYPE_CODE);
+        }
+
+        $fieldList = [
+            'tax_class_id',
+        ];
+
+        // make these attributes applicable to vendor membership products
+        foreach ($fieldList as $field) {
+            $applyTo = explode(
+                ',',
+                $eavSetup->getAttribute(Product::ENTITY, $field, 'apply_to')
+            );
+            if (!in_array(FlashdealMembership::TYPE_CODE, $applyTo)) {
+                $applyTo[] = FlashdealMembership::TYPE_CODE;
+                $eavSetup->updateAttribute(
+                    \Magento\Catalog\Model\Product::ENTITY,
+                    $field,
+                    'apply_to',
+                    implode(',', $applyTo)
+                );
+            }
+        }
+
+    }
+
+    public function revert()
+    {
+        $this->moduleDataSetup->getConnection()->startSetup();
+        /** @var EavSetup $eavSetup */
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
+        $eavSetup->removeAttribute(\Magento\Catalog\Model\Product::ENTITY, 'customer_group_destination');
+
+        $this->moduleDataSetup->getConnection()->endSetup();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAliases()
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getDependencies()
+    {
+        return [
+        
+        ];
+    }
+}

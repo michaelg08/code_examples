@@ -1,0 +1,118 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block Magento\Catalog\Block\Product\View */
+?>
+<?php
+$required = '';
+if ($block->hasRequiredOptions()) {
+    $required = ' data-hasrequired="' . $block->escapeHtmlAttr(__('* Required Fields')) . '"';
+}
+?>
+<div class="product-options-wrapper" id="product-options-wrapper"<?= /* @noEscape */ $required ?>>
+    <div class="fieldset" tabindex="0">
+        <?= $block->getChildHtml('', true) ?>
+    </div>
+</div>
+
+<div id="service-wrapper" style="display:none;">
+    <input type="text" name="flashdeal_start_date" value="" id="flashdeal_start_date" />
+    <input type="text" name="flashdeal_expiration_date" value="" id="flashdeal_expiration_date" />
+    <input type="text" name="flashdeal_duration" value="0" id="flashdeal_duration"/>
+</div>
+<script>
+require([
+    'jquery',
+    'jquery/ui',
+    'jquery/validate',
+    'mage/translate'
+    ], function($){
+        'use strict';
+
+        $('.product-custom-option.radio').click( function() {
+            var el1 = $(this).siblings('label.label');
+            var el2 = $(el1).find('span').first();
+            var duration = parseInt($(el2).text().replace(/[^\d]/g, ''));
+
+            if (duration == 'undefined' || duration == NaN ) {
+                duration = 0; 
+            } 
+
+            $('#flashdeal_duration').attr('value', duration);
+
+            if ($('#flashdeal_start_date').val() != '') {
+                setExpDate();
+                validateExpirationDate();
+            }
+
+        });
+
+        $('.product-custom-option.datetime-picker').change( function() {
+            if($(this).val() != '' || $(this).val() != 'undefined') {
+               setExpDate();
+               validateExpirationDate();
+            }
+        });  
+        
+        function setExpDate() {
+            var datePickerData = $(".product-custom-option.datetime-picker").data('datepicker');
+            var startDate, expDate; 
+            if (datePickerData != 'undefined') {
+                startDate = new Date (datePickerData.selectedYear, datePickerData.selectedMonth, datePickerData.selectedDay);
+                $('#flashdeal_start_date').attr('value', startDate.toDateString());
+            }
+
+            if ( startDate && parseInt($('#flashdeal_duration').val()) > 0 )  {
+                var duration = parseInt($('#flashdeal_duration').val());
+                expDate = new Date();
+                expDate.setDate(startDate.getDate() + duration);    
+                $('#flashdeal_expiration_date').attr('value', expDate.toDateString());
+            }
+        }
+        
+        function validateExpirationDate () {
+            if ($('#flashdeal_expiration_date').val() != '' && $('#flashdeal_duration').val() !='' && parseInt($('#flashdeal_duration').val()) > 0) {
+                const oneDay = 24 * 60 * 60 * 1000; 
+                const toDay = new Date();
+                var duration = parseInt($('#flashdeal_duration').val());
+                var startDate = new Date ( $('#flashdeal_start_date').val() );
+                var expDate = new Date ( $('#flashdeal_expiration_date').val() );                    
+
+                const dateDiff1 = Math.round(Math.abs((expDate - toDay) / oneDay));
+                const dateDiff2 = Math.round(Math.abs((expDate - startDate) / oneDay));
+
+                $("#product-addtocart-button").prop('disabled', false); 
+
+                if ( dateDiff1 < 7 ) {
+                    var msg = '<div id="flashdeal_warning" class="message message-warning warning"><div data-ui-id="messages-message-warning">'+$.mage.__("<?php echo __('You order date in same week as current Date!'); ?>")+'</div></div>';
+
+                    $("#maincontent > div.page.messages > div:nth-child(2)").append(msg).fadeIn();
+
+                    setTimeout( function() {  
+                                $("#maincontent > div.page.messages > div:nth-child(2)").fadeOut(1000);
+                                $("#flashdeal_warning").detach();
+                            }, 5000);
+                    $("#product-addtocart-button").prop('disabled', true); 
+                }
+
+                if ( dateDiff2 > 7 ) {
+                    var msg = '<div id="flashdeal_warning" class="message message-warning warning"><div data-ui-id="messages-message-warning">'+$.mage.__("<?php echo  __('You can\'t set duration more then 7 days!'); ?>")+'</div></div>';    
+                    
+                    $("#maincontent > div.page.messages > div:nth-child(2)").append(msg).fadeIn();
+
+                    setTimeout ( function() {  
+                                $("#maincontent > div.page.messages > div:nth-child(2)").fadeOut(1000);
+                                $("#flashdeal_warning").detach();
+                    }, 5000);
+                    $("#product-addtocart-button").prop('disabled', true); 
+                }
+                return; 
+            }
+              
+        }
+    
+});
+</script>

@@ -1,0 +1,51 @@
+<?php 
+    $flashdealCollection = $this->getFlashdealData();
+?>
+<?php if($flashdealCollection): ?>
+<div class="container">
+    <div class="row">
+      <div class="">
+        <div class="block block-carousel">
+            <div class="block-content">
+                <div id="flashdeal-banner-slider" class="owl-carousel owl-banner-carousel owl-bottom-narrow owl-bottom-absolute-narrow">
+                    <?php foreach ($flashdealCollection as $flashdealItem): ?>
+                    
+                      <?php if ( $this->validateRelatedCustomerGroup( (int)$flashdealItem->getRelatedCustomerGroupId()) && $flashdealItem->getStatus() != 0 && $this->getImageUrl($flashdealItem->getImagePath()) != ''): ?>
+                        <div class="item" style="max-width: 1140px; max-height: 407px; width: 100%;" >
+                            <a href="<?php echo $this->getSellerPageUrl($flashdealItem->getSellerId()); ?>">
+                                <img src="<?php echo $this->getImageUrl($flashdealItem->getImagePath()); ?>" alt="" />
+                            </a>
+                        </div>
+                      <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+
+                <script type="text/javascript">
+                  require([
+                    'jquery',
+                    'Ves_All/lib/owl.carousel/owl.carousel.min'
+                    ], function ($) {
+                        var banner_owl = $("#flashdeal-banner-slider");
+                        banner_owl.owlCarousel({
+                          items: 1,
+                          autoplay: true,
+                          autoplayTimeout: 5000,
+                          autoplayHoverPause: true,
+                          dots: false,
+                          nav: true,
+                          navRewind: true,
+                          animateIn: 'fadeIn',
+                          animateOut: 'fadeOut',
+                          loop: true,
+                          navText: ["<span class='icon icon-557'>&nbsp;</span>","<span class='icon icon-556'>&nbsp;</span>"]
+                      });
+                    });
+                </script>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<?php endif; ?>

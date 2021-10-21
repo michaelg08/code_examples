@@ -1,0 +1,141 @@
+<?php
+/**
+ * @var $block \UIS\FlashDeals\Block\Flashdeals\Form
+ */
+?>
+<?php
+?>
+<div>
+	<?= $block->displayForm() ?>
+	<?= __('Hello UIS_FlashDeals::flashdeals/form.phtml') ?>
+</div>
+<form class="entry-edit form-inline" action="<?php echo $block->getUrl('uisflashdeals/flashdeals/save/id/'.$id, ["_secure" => $this->getRequest()->isSecure()]) ?>" enctype="multipart/form-data" method="post" data-role="form-profile-validate" data-mage-init='{"validation":{}}'>
+	<input type="hidden" name="store_id" class="admin__control-text" value="<?php echo $helper->getCurrentStoreId(); ?>" />
+	<div class="lof-mp-page-title page-title">
+		<h2><?php echo __('Deal Information') ?></h2>
+		<div class="page-actions-buttons">
+			 <div class="actions-split save primary" title="Save">
+				<button class="action-default primary" title="<?php echo __('Save ') ?>" type="submit">
+					<span><span><?php echo __('Save ') ?></span></span>
+				</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="admin__fieldset-wrapper-content">
+		<fieldset class="admin__fieldset">
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("ID"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="id" class="admin__control-text" value="<? $this->getCurrentFlashdealId(); ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Seller ID"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="seller_id" class="admin__control-text" value="<? $this->getSellerId(); ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Seller Group ID"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="seller_group_id" class="admin__control-text" value="<? $this->getSellerGroupId(); ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Subscription Product ID"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="subscription_product_id" class="admin__control-text" value="<? $this->getSubscriptionProductId(); ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Start Date"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="start_date" class="admin__control-text" value="<? $this->getStartDate(); ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Expiration Date"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="expiration_date" class="admin__control-text" value="<? $this->getExpirationDate(); ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Created At"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="created_at" class="admin__control-text" value="<? $this->getCreatedAt(); ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Status"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="status" class="admin__control-text" value="<? $this->getStatus(); ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Name"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="name" class="admin__control-text" value="<? $this->getName(); ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Description"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="description" class="admin__control-text" value="<? $this->getDescription(); ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Image Path"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="image_path" class="admin__control-text" value="<? $this->getImagePath(); ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Related Customer Group ID"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="related_customer_group_id" class="admin__control-text" value="<? $this->getRelatedCustomerGroupId(); ?>" />
+				</div>
+			</div>
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("CMS Block ID"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="cms_block_id" class="admin__control-text" value="<? $this->getCmsBlockId(); ?>" />
+				</div>
+			</div>			
+			<div class="admin__field">
+				<label class="admin__field-label">
+					<?php echo __("Calendar Period Days"); ?>
+				</label>
+				<div class="admin__field-control">
+					<input type="text" name="calendar_period_days" class="admin__control-text" value="<? $this->getCmsBlockId(); ?>" />
+				</div>
+			</div>			
+		</fieldset>
+	</div>
+</form>

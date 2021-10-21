@@ -1,0 +1,32 @@
+.product-info-main .product-social-links {
+    display: none;
+}
+.product-category-name {
+    display: none !important;
+}
+.product-info-main .product.pricing {
+    display: none;
+}
+.product-options-bottom {
+    margin-top: 25px;
+}
+.product-options-wrapper .label {
+    color: #000;
+    font-size: 1.4rem;
+    font-weight: normal;
+}
+.options-list .radio {
+    display: inline-block;
+}
+.product-options-bottom .qty {
+    display: none;
+}
+.product-options-bottom .quantity-arrow-minus,
+#qty,
+.product-options-bottom .quantity-arrow-plus {
+    display: none;
+}
+#product-addtocart-button {
+    height: 40px;
+    width: 30vh;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+	<router id="admin">
+<!--
+		<route frontName="uis_flashdeals" id="uis_flashdeals">
+			<module before="Magento_Backend" name="UIS_FlashDeals"/>
+		</route>
+-->
+		<route frontName="uisflashdeals" id="uisflashdeals">
+			<module before="Magento_Backend" name="UIS_FlashDeals"/>
+		</route>
+
+	</router>
+</config>

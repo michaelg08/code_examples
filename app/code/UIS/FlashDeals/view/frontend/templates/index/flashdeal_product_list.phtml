@@ -1,0 +1,66 @@
+<?php
+$flashdealProductIds = $this->getFlashdealProductIds(6);
+$products = $this->getFlashdealStoreProducts($flashdealProductIds);
+$objectManager  = \Magento\Framework\App\ObjectManager::getInstance();
+$productModel   = $objectManager->get('\Magento\Catalog\Model\ProductFactory');
+?>
+<?php if (!empty($products) && count($products) > 0 ) : ?>
+            <div class="products wrapper grid products-grid">
+                <ol class="products list items product-items">
+                    <?php foreach ($products as $productItem) : ?>
+                        <?php
+                            $product = $productItem->load($productItem->getEntityId());
+                        ?>
+                        <li class="flashdeal item product product-item">
+                            <div class="product-item-info" data-container="product-grid" style="width__:240px">
+                                <a href="<?= $product->getProductUrl(); ?>" class="product photo product-item-photo" tabindex="-1">
+                                    <span class="product-image-container" style="min-height__: 220px;">
+                                        <img class="product-image-photo" src="<?php echo $this->getProductImage($product)->getUrl(); ?>" style="width:200px;" alt="<?= _($product->getSku()); ?>">
+                                    </span>
+                                </a>
+                                <div class="product details product-item-details">
+                                    <strong class="product name product-item-name">
+                                        <a class="product-item-link" href="<?= $product->getProductUrl(); ?>">
+                                            <?= _($product->getName()); ?>
+                                        </a>
+                                    </strong>
+                                    <p class="description">
+                                        <span><?= _($product->getSku()); ?></span>
+                                    </p>
+
+                                    <div class="price-box price-final_price" data-role="priceBox" data-product-id="<?= $product->getEntityId(); ?> " data-price-box="product-id-<?= $product->getEntityId(); ?>">
+                                        <span class="normal-price">
+                                            <span class="price-container price-final_price tax weee">
+                                                <span class="price-label">As low as</span>
+                                                <span id="product-price-<?= $product->getEntityId(); ?>" data-price-amount="<?= $product->getFinalPrice(); ?>" data-price-type="finalPrice" class="price-wrapper">
+                                                    <span class="price"><?php echo $this->getFormattedPrice($product->getFinalPrice()); ?></span>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ol>
+
+                <!-- View More Button -->
+
+                <div class="view-more">
+                    <p><a id="flashdeal-products-more" href="<?= $this->getMoreButtonLink(); ?>">VIEW MORE</a></p>
+                </div>
+
+            </div>
+
+<?php endif; ?>
+
+<script>
+     require([
+    'jquery',
+    'domReady!'
+    ], function($) {
+        if ( $('.flashdeal.product-item').length  == 0 ) {
+            $('div.flash-deals').hide();
+        }
+    });
+</script>

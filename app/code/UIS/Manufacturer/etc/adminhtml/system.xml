@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="uis_extensions" sortOrder="999" translate="label">
+			<label>UIS</label>
+		</tab>
+		<section id="uis_manufacturer" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Manufacturer</label>
+			<tab>uis_extensions</tab>
+			<resource>UIS_Manufacturer::uis_manufacturer_config</resource>
+			<group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>General</label>
+				<field id="default_customer_group_destination" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+					<label>Default Customer Destination Group</label>
+					<comment/>
+					<source_model>UIS\FlashDeals\Model\Product\Attribute\Source\CustomerGroupDestination</source_model>
+				</field>
+				<field id="max_products_per_subscription" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text">
+					<label>MAX Products per subscription</label>
+					<comment/>
+				</field>
+				<field id="flashdeal_banner_payment_product_sku" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">
+					<label>Banner Payment Product SKU</label>
+					<comment/>
+				</field>
+				<field id="flashdeal_products_payment_product_sku" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="35" translate="label" type="text">
+					<label>Product Payment Product SKU</label>
+					<comment/>
+				</field>
+				<field id="max_image_vertical_size" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
+					<label>Max vertical size of image (px)</label>
+					<comment/>
+				</field>
+				<field id="banner_upload_directory" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
+					<label>Media Directory for upload banner</label>
+					<comment/>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

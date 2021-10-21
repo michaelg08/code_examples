@@ -1,0 +1,394 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">uis_flashdeals_flashdeals_form.flashdeals_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+
+			<button class="UIS\FlashDeals\Block\Marketplace\FlashDeals\Form\Edit\BackButton" name="back"/>
+			<button class="UIS\FlashDeals\Block\Marketplace\FlashDeals\Form\Edit\DeleteButton" name="delete"/>
+			<button class="UIS\FlashDeals\Block\Marketplace\FlashDeals\Form\Edit\SaveButton" name="save"/>
+			<!--
+			<button class="UIS\FlashDeals\Block\Marketplace\FlashDeals\Form\Edit\SaveAndContinueButton" name="save_and_continue"/>
+			-->
+		</buttons>
+		<namespace>uis_flashdeals_flashdeals_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>uis_flashdeals_flashdeals_form.flashdeals_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="flashdeals_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+				<item name="submit_url" path="uisflashdeals/flashdeals/save" xsi:type="url" />
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="uisflashdeals/flashdeals/save"/>
+		</settings>
+		<dataProvider class="UIS\FlashDeals\Model\FlashDeals\DataProvider" name="flashdeals_form_data_source">
+			<settings>
+				<requestFieldName>flashdeals_id</requestFieldName>
+				<primaryFieldName>flashdeals_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+		<field formElement="input" name="name" sortOrder="10">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Name</label>
+				<dataScope>name</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field formElement="textarea" name="description" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Description</label>
+				<dataScope>description</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		 <field name="image_path" formElement="imageUploader" sortOrder="30">
+            <settings>
+                <notice translate="true">Banner Image Uploader</notice>
+                <label translate="true">Banner Image</label>
+                <componentType>imageUploader</componentType>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>8388608</maxFileSize>
+						<previewTmpl>UIS_FlashDeals/image-preview</previewTmpl>
+                        <uploaderConfig>
+                            <param xsi:type="string" name="url">uisflashdeals/flashdeals/uploadimage</param>
+                        </uploaderConfig>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+		<field name="related_customer_group_id" formElement="select" sortOrder="40">
+		 	<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="related_customer_group_id" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Related Customer Group ID</label>
+                <dataScope>related_customer_group_id</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="999" xsi:type="array">
+                                <item name="value" xsi:type="string">999</item>
+                                <item name="label" xsi:type="string">Consumer &amp; Retailer</item>
+                            </option>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="label" xsi:type="string">Consumer</item>
+                            </option>
+							<option name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">3</item>
+                                <item name="label" xsi:type="string">Retailer</item>
+                            </option>
+                        </options>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+<!-- 
+        <button name="products" component="Magento_Ui/js/form/components/button" sortOrder="50">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Select Product</item>
+                        <item name="title" xsi:type="string" translate="true">Select Related Products</item>
+                        <item name="labelVisible" xsi:type="boolean">true</item>
+                        <item name="template" xsi:type="string">ui/form/components/button/container</item>
+                        <item name="actions" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="targetName" xsi:type="string">${ $.parentName}.flashdeal_related_products_modal</item>
+                                <item name="actionName" xsi:type="string">toggleModal</item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+        </button>
+		<modal name="flashdeal_related_products_modal">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="provider" xsi:type="string">uis_flashdeals_flashdeals_form.flashdeals_form_data_source</item>
+                <item name="onCancel" xsi:type="string">actionCancel</item>
+                <item name="options" xsi:type="array">
+                    <item name="title" xsi:type="string">Please select only ONE product</item>
+                    <item name="buttons" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="text" xsi:type="string">Select</item>
+                            <item name="class" xsi:type="string">action-primary</item>
+							<item name="id" xsi:type="string">modal-select-button</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">index = uis_flashdeals_related_product_listing</item>
+                                    <item name="actionName" xsi:type="string">save</item>
+                                </item>
+                                <item name="1" xsi:type="string">closeModal</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+       <insertListing name="uis_flashdeals_related_product_listing">
+            <settings>
+                <dataLinks>
+                    <exports>true</exports>
+                    <imports>true</imports>
+                </dataLinks>
+                <autoRender>true</autoRender>
+                <selectionsProvider>uis_flashdeals_related_product_listing.uis_flashdeals_related_product_listing.product_columns.ids</selectionsProvider>
+                <dataScope>uis_flashdeals_related_product_listing</dataScope>
+                <ns>uis_flashdeals_related_product_listing</ns>
+            </settings>
+        </insertListing>
+    </modal>
+-->
+		<field name="status" formElement="select" sortOrder="60">
+		 	<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Status (Enabled / Disabled)</label>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">0</item>
+                                <item name="label" xsi:type="string">No</item>
+                            </option>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="label" xsi:type="string">Yes</item>
+                            </option>
+                        </options>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+		<field formElement="date" name="created_at" sortOrder="70">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<disabled>true</disabled>
+				<dataType>text</dataType>
+				<label translate="true">Created At</label>
+				<dataScope>created_at</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field formElement="date" name="start_date" sortOrder="80">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<disabled>true</disabled>
+				<dataType>text</dataType>
+				<label translate="true">Start Date</label>
+				<dataScope>start_date</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field formElement="date" name="expiration_date" sortOrder="90">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<disabled>true</disabled>
+				<dataType>text</dataType>
+				<label translate="true">Expiration Date</label>
+				<dataScope>expiration_date</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field formElement="input" name="calendar_period_days" sortOrder="100">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<disabled>true</disabled>
+				<dataType>text</dataType>
+				<label translate="true">Period (Days)</label>
+				<dataScope>calendar_period_days</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+
+		<field formElement="input" name="cms_block_id" sortOrder="110">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<visible>false</visible>
+				<dataType>text</dataType>
+				<label translate="true">Cms Block ID</label>
+				<dataScope>cms_block_id</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field formElement="input" name="customer_id" sortOrder="120">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<visible>false</visible>			
+				<dataType>text</dataType>
+				<label translate="true">Customer ID</label>
+				<dataScope>customer_id</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field formElement="input" name="customer_group_id" sortOrder="130">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<visible>false</visible>
+				<dataType>text</dataType>
+				<label translate="true">Customer Group ID</label>
+				<dataScope>customer_group_id</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field formElement="input" name="seller_id" sortOrder="140">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<visible>false</visible>
+				<dataType>text</dataType>
+				<label translate="true">Seller ID</label>
+				<dataScope>seller_id</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field formElement="input" name="seller_group_id" sortOrder="30">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<visible>false</visible>
+				<dataType>text</dataType>
+				<label translate="true">Seller Group ID</label>
+				<dataScope>seller_group_id</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field formElement="input" name="order_id" sortOrder="150">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<visible>false</visible>
+				<dataType>text</dataType>
+				<label translate="true">Subscription Order ID</label>
+				<dataScope>order_id</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field formElement="input" name="subscription_product_id" sortOrder="160">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">FlashDeals</item>
+				</item>
+			</argument>
+			<settings>
+				<visible>false</visible>
+				<dataType>text</dataType>
+				<label translate="true">Subscription Product ID</label>
+				<dataScope>subscription_product_id</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+	</fieldset>
+</form>

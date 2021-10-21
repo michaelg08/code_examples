@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="UIS\FlashDeals\Api\FlashDealsRepositoryInterface" type="UIS\FlashDeals\Model\FlashDealsRepository"/>
+	<preference for="UIS\FlashDeals\Api\Data\FlashDealsInterface" type="UIS\FlashDeals\Model\Data\FlashDeals"/>
+	<preference for="UIS\FlashDeals\Api\Data\FlashDealsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="UIS\FlashDeals\Model\ResourceModel\FlashDeals\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">uis_flashdeals_flashdeals</argument>
+			<argument name="resourceModel" xsi:type="string">UIS\FlashDeals\Model\ResourceModel\FlashDeals\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="uis_flashdeals_flashdeals_listing_data_source" xsi:type="string">UIS\FlashDeals\Model\ResourceModel\FlashDeals\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+
+	<preference for="UIS\FlashDeals\Api\FlashdealProductsRepositoryInterface" type="UIS\FlashDeals\Model\FlashdealProductRepository"/>
+	<preference for="UIS\FlashDeals\Api\Data\FlashdealProductsInterface" type="UIS\FlashDeals\Model\Data\FlashdealProducts"/>
+	<preference for="UIS\FlashDeals\Api\Data\FlashdealProductsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="UIS\FlashDeals\Model\ResourceModel\FlashdealProducts\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">uis_flashdeals_products</argument>
+			<argument name="resourceModel" xsi:type="string">UIS\FlashDeals\Model\ResourceModel\FlashdealProducts\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="uis_flashdeals_flashdeal_products_listing_data_source" xsi:type="string">UIS\FlashDeals\Model\ResourceModel\FlashdealProducts\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

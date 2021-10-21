@@ -1,0 +1,12 @@
+<config>
+    <group id="default">
+        <job name="flashdeals_expiration_check" instance="\UIS\FlashDeals\Cron\FlashdealsExpireStatusCheck" method="execute">
+	    <schedule>*/5 * * * *</schedule>
+        </job>
+    </group>
+    <group id="default">
+        <job name="flashdealproducts_expiration_check" instance="\UIS\FlashDeals\Cron\FlashdealProductsExpireStatusCheck" method="execute">
+	    <schedule>*/5 * * * *</schedule>
+        </job>
+    </group>
+</config>

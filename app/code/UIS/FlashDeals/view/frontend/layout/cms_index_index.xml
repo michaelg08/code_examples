@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="content">
+			<block as="flashdeals_banner" class="UIS\FlashDeals\Block\Flashdeals\Banner" name="flashdeals.banner" template="UIS_FlashDeals::baner/slider.phtml" before="home.page.popular"/>
+
+			<!-- Commented because block is added to theme layout
+				<block as="flashdeals_products_list" class="UIS\FlashDeals\Block\Index\FlashdealsProductsList" name="flashdeals.products.list" template="UIS_FlashDeals::index/flashdeal_product_list.phtml" before="-"/>
+			-->
+		</referenceContainer>
+	</body>
+</page>

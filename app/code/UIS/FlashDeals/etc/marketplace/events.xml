@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+<!--
+    <event name="layout_generate_blocks_after">
+        <observer name="uis_generate_blocks_after" instance="UIS\FlashDeals\Observer\JenerateBlocks" />
+    </event>
+-->
+    <event name="layout_generate_blocks_after">
+    	<observer name="uis_layout_generate_blocks_after" instance="UIS\FlashDeals\Observer\LayoutObserver" />
+    </event>
+    <event name="uis_flashdeals_flashdeal_save_success">
+        <observer name="uis_flashdeals_flashdeal_save_success" instance="UIS\FlashDeals\Observer\FlashdealSaveSuccess" />
+    </event>
+    <event name="uis_flashdeals_flashdealproduct_save_success">
+        <observer name="uis_flashdeals_flashdealproduct_save_success" instance="UIS\FlashDeals\Observer\FlashdealsProductSaveSuccess" />
+    </event>
+</config>

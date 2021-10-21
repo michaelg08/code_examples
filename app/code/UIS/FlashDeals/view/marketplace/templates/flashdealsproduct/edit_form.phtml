@@ -1,0 +1,103 @@
+<?php
+
+/**
+ * @var $block \UIS\FlashDeals\Block\FlashdealProduct\Form
+ */
+?>
+<?php
+?>
+<div class="form-header" style="font-size: 2rem; font-weight: 400; color: #eb5202; ">
+	<strong>
+		<?php if ($block->displayForm()) : ?>
+			<span><?= __('Edit Item ID: ') ?></span>
+			<span><?= $block->displayForm() ?></span>
+		<?php else: ?>
+			<span><?= __('Create New Item') ?></span>
+		<?php endif ?>
+	</strong>			
+</div>
+<?php //var_dump($this->getRequest()->getParams()); ?>
+<?php
+	// $params = $this->getFlashDealData();
+	// echo ($params);	
+?>
+<script>
+	require([
+		'jquery',
+		"ko",
+		'mage/backend/form',
+		'mage/backend/validation',
+		'uiComponent',
+		'mage/url',
+		'mage/storage',
+		"domReady!"
+	], function($, ko, Component, urlBuilder, storage) {
+		'use strict';
+
+		$(function() {
+
+			ko.options.useOnlyNativeEvents = true;
+
+			//var params = JSON.parse('<?php echo $this->getFlashDealData(); ?>');
+			var params = [];
+			var fnames = ['id',
+				'order_id',
+				'seller_id',
+				'seller_group_id',
+				'customer_id',
+				'customer_group_id',
+				'start_date',
+				'expiration_date',
+				'created_at',
+				'subscription_product_id',
+				'calendar_period_days',
+				'cms_block_id'
+			];
+
+			setTimeout(function() {
+				for (const [key, value] of Object.entries(params)) {
+					switch (key) {
+						case 'product':
+							$('input[name="subscription_product_id"]').attr('value', value);
+							break;
+						case 'flashdeal_start_date':
+							$('input[name="start_date"]').attr('value', value);
+							break;
+						case 'flashdeal_expiration_date':
+							$('input[name="expiration_date"]').attr('value', value);
+							break;
+						case 'flashdeal_duration':
+							$('input[name="calendar_period_days"]').attr('value', value);
+							break;
+						case 'order_id':
+							$('input[name="order_id"]').attr('value', value);
+							break;
+						case 'customer_id':
+							$('input[name="customer_id"]').attr('value', value);
+							break;
+						case 'customer_group_id':
+							$('input[name="customer_group_id"]').attr('value', value);
+							break;
+						case 'seller_id':
+							$('input[name="seller_id"]').attr('value', value);
+							break;
+						case 'seller_group_id':
+							$('input[name="seller_group_id"]').attr('value', value);
+							break;
+						case 'order_id':
+							$('input[name="order_id"]').attr('value', value);
+							break;
+						case 'created_at':
+							$('input[name="created_at"]').attr('value', value);
+							break;
+					}
+				}
+				for (let i = 0; i < fnames.length; i++) {
+					$('input[name="' + fnames[i] + '"]').attr('disabled', 'disabled');
+				}
+			}, 2000);
+
+		});
+
+	});
+</script>

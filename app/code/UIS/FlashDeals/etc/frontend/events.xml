@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_checkout_cart_add">
+        <observer name="uis_flashdeal_subscription_validator" instance="UIS\FlashDeals\Observer\FlashdealSubscriptionValidator" />
+    </event>
+    <event name="checkout_cart_add_product_complete">
+        <observer name="uis_flashdeal_subscription_cart_add_complete" instance="UIS\FlashDeals\Observer\FlashdealSubscriptionCartAddComplete" />
+    </event>
+    <event name="checkout_onepage_controller_success_action">
+        <observer name="uis_flashdeal_subscription_place_after" instance="UIS\FlashDeals\Observer\FlashdealSubscriptionPlaceAfter" />
+    </event>
+
+    <event name="checkout_cart_product_add_after">
+        <observer name="uis_flashdeal_checkout_cart_product_add_after" instance="UIS\FlashDeals\Observer\CheckoutCartProductAddAfter" />
+    </event>
+
+<!--
+    <event name="uis_flashdeals_flashdeal_save_success">
+        <observer name="uis_flashdeals_flashdeal_save_success" instance="UIS\FlashDeals\Observer\FlashdealSaveSuccess" />
+    </event>
+-->
+</config>

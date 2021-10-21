@@ -1,0 +1,58 @@
+{
+    "uis_flashdeals_flashdeals": {
+        "column": {
+            "flashdeals_id": true,
+            "id": true,
+            "seller_id": true,
+            "seller_group_id": true,
+            "subscription_product_id": true,
+            "start_date": true,
+            "expiration_date": true,
+            "created_at": true,
+            "status": true,
+            "name": true,
+            "description": true,
+            "image_path": true,
+            "related_customer_group_id": true,
+            "cms_block_id": true,
+            "custom_layout": true,
+            "calendar_period_days": true,
+            "duration": true,
+            "duration_unit": true,
+            "order_id": true,
+            "customer_id": true,
+            "customer_group_id": true,
+            "flashdeal_product_ids": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "uis_flashdeals_products": {
+        "column": {
+            "flashdeals_id": true,
+            "id": true,
+            "seller_id": true,
+            "seller_group_id": true,
+            "customer_id": true,
+            "customer_group_id": true,
+            "subscription_product_id": true,
+            "start_date": true,
+            "expiration_date": true,
+            "created_at": true,
+            "status": true,
+            "name": true,
+            "description": true,
+            "related_customer_group_id": true,
+            "calendar_period_days": true,
+            "duration": true,
+            "duration_unit": true,
+            "order_id": true,
+            "flashdeal_product_ids": true,
+            "flashdeal_product_requested_price": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

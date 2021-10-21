@@ -1,0 +1,50 @@
+.uisflashdeals-flashdeals-edit .form-header {
+    font-size: 2rem;
+    font-weight  : 400;
+    color        : #eb5202;
+    margin-bottom: 10px;
+}
+
+.admin__action-multiselect-label .multiselect-label-wrapper {
+    width: 100%;
+}
+
+.admin__action-multiselect-label .product-image {
+    display: inline-block;
+    margin-right: 20px;
+    border: 1px solid #adadad;
+    padding: 5px;
+    height: 100%;
+    min-height: 50px;
+}
+.admin__action-multiselect-label .product-image > img {
+    vertical-align: middle;
+    width: 50px;
+}
+
+.admin__action-multiselect-label .product-sku {
+    display: inline-block;
+    text-align: center;
+    margin: 0 20px;
+    padding: 10px;
+    width: 150px;
+    border-left: 1px solid #5A738E;
+    border-right: 1px solid #5A738E;
+    height: 100%;
+    min-height: 50px;
+}
+.admin__action-multiselect-label .product-sku > span {
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+}
+
+.admin__action-multiselect-label .product-name {
+    display: inline-block;
+    vertical-align: middle;
+}
+.admin__action-multiselect-label .product-name > span {
+    vertical-align: middle;
+    display: inline-block;
+}
+

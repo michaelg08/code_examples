@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<uis_flashdeals>
+			<general>
+				<is_enabled>1</is_enabled>
+				<default_customer_group_destination>999</default_customer_group_destination>
+				<max_products_per_subscription>10</max_products_per_subscription>
+				<max_image_vertical_size/>
+				<flashdeal_banner_payment_product_sku>Flash-Deal-Banner-Payment</flashdeal_banner_payment_product_sku>
+				<flashdeal_products_payment_product_sku>Flash-Deal-Product-Payment</flashdeal_products_payment_product_sku>
+				<redirect_to_checkout_cart>1</redirect_to_checkout_cart>
+				<reset_checkout>0</reset_checkout>
+				<banner_upload_directory>Flashdeals</banner_upload_directory>
+			</general>
+		</uis_flashdeals>
+	</default>
+</config>
